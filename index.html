@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>국내여행 모바일 관광가이드북</title>
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://{s}.tile.openstreetmap.org" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <p class="eyebrow">2026 국내 답사 여행</p>
+        <div class="header-row">
+          <div>
+            <h1>모바일 관광가이드북</h1>
+          </div>
+          <div class="header-actions">
+            <button id="fitAllButton" class="quiet-button" type="button">전체 보기</button>
+            <button id="routeOrderButton" class="quiet-button" type="button">관광순서</button>
+          </div>
+        </div>
+      </header>
+
+      <main>
+        <section class="map-section" aria-label="선택한 후보 지도">
+          <div id="map"></div>
+          <div class="map-overlay">
+            <strong id="visibleCount">0곳</strong>
+            <span id="visibleLabel">표시 중</span>
+          </div>
+        </section>
+
+        <section class="guide-panel" aria-label="후보 목록">
+          <nav id="tabBar" class="tab-bar" aria-label="후보 종류 토글"></nav>
+          <div id="regionScroller" class="region-scroller" aria-label="지역 필터"></div>
+          <section class="toc-panel" aria-label="장소 목차">
+            <div class="toc-heading">
+              <h2>목차</h2>
+              <div class="toc-pager" aria-label="목차 페이지 넘기기">
+                <button id="prevTocButton" class="toc-arrow-button" type="button" aria-label="이전 목차" title="이전 목차">‹</button>
+                <span id="carouselMeta">1 / 1</span>
+                <button id="nextTocButton" class="toc-arrow-button" type="button" aria-label="다음 목차" title="다음 목차">›</button>
+              </div>
+            </div>
+            <div id="tocTabs" class="toc-tabs" role="tablist" aria-label="목차 분류"></div>
+            <div id="tocList" class="toc-list"></div>
+          </section>
+          <div class="carousel-controls" aria-label="카드 넘기기">
+            <button id="prevCardButton" class="page-button" type="button">이전</button>
+            <button id="nextCardButton" class="page-button" type="button">다음</button>
+          </div>
+          <div id="cards" class="card-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <section id="allSightsPanel" class="all-sights-panel" aria-label="전체 후보 목록" hidden>
+      <div class="all-sights-dialog" role="dialog" aria-modal="true" aria-labelledby="allSightsTitle">
+        <div class="all-sights-header">
+          <div>
+            <p class="all-sights-eyebrow">전체 보기</p>
+            <h2 id="allSightsTitle">전체 관광지</h2>
+          </div>
+          <button id="closeAllSightsButton" class="panel-close-button" type="button">닫기</button>
+        </div>
+        <div id="allSightsTabs" class="all-sights-tabs" role="tablist" aria-label="전체 보기 분류"></div>
+        <div id="allSightsList" class="all-sights-list"></div>
+      </div>
+    </section>
+
+    <section id="routePanel" class="all-sights-panel" aria-label="포항 출발 관광순서" hidden>
+      <div class="all-sights-dialog" role="dialog" aria-modal="true" aria-labelledby="routeTitle">
+        <div class="all-sights-header">
+          <div>
+            <p class="all-sights-eyebrow">관광순서</p>
+            <h2 id="routeTitle">포항 출발 가까운 순서</h2>
+          </div>
+          <button id="closeRouteButton" class="panel-close-button" type="button">닫기</button>
+        </div>
+        <div id="routeList" class="all-sights-list route-list"></div>
+      </div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
